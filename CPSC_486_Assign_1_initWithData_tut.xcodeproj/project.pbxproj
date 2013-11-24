@@ -9,18 +9,31 @@
 /* Begin PBXBuildFile section */
 		3D89F9231841DBB300AD5243 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D89F9221841DBB300AD5243 /* main.cpp */; };
 		3D89F9251841DBB300AD5243 /* CPSC_486_Assign_1_initWithData_tut.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D89F9241841DBB300AD5243 /* CPSC_486_Assign_1_initWithData_tut.1 */; };
+		3D89F92C1841DBE900AD5243 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D89F92B1841DBE900AD5243 /* OpenGL.framework */; };
+		3D89F92E1841DC1400AD5243 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D89F92D1841DC1400AD5243 /* libglfw3.a */; };
+		3D89F9331841E83800AD5243 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D89F9321841E83800AD5243 /* AppKit.framework */; };
+		3D89F9351841E83D00AD5243 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D89F9341841E83D00AD5243 /* IOKit.framework */; };
+		3D89F9381841EC9800AD5243 /* renderSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D89F9361841EC9800AD5243 /* renderSystem.cpp */; };
+		3D89F93B1841F2BA00AD5243 /* projectManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D89F9391841F2BA00AD5243 /* projectManager.cpp */; };
+		3D89F93E184268D800AD5243 /* vertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D89F93C184268D800AD5243 /* vertexBuffer.cpp */; };
+		3D89F94118426B3C00AD5243 /* shaderLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D89F93F18426B3C00AD5243 /* shaderLoader.cpp */; };
+		3D89F948184270DC00AD5243 /* shaderInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D89F946184270DC00AD5243 /* shaderInterface.cpp */; };
+		3D89F949184284E100AD5243 /* ColorShader.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D89F94218426F0800AD5243 /* ColorShader.vsh */; };
+		3D89F94A184284E100AD5243 /* ColorShader.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D89F94418426F1200AD5243 /* ColorShader.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		3D89F91D1841DBB300AD5243 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
+				3D89F949184284E100AD5243 /* ColorShader.vsh in CopyFiles */,
+				3D89F94A184284E100AD5243 /* ColorShader.fsh in CopyFiles */,
 				3D89F9251841DBB300AD5243 /* CPSC_486_Assign_1_initWithData_tut.1 in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -28,6 +41,22 @@
 		3D89F91F1841DBB300AD5243 /* CPSC_486_Assign_1_initWithData_tut */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CPSC_486_Assign_1_initWithData_tut; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D89F9221841DBB300AD5243 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3D89F9241841DBB300AD5243 /* CPSC_486_Assign_1_initWithData_tut.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = CPSC_486_Assign_1_initWithData_tut.1; sourceTree = "<group>"; };
+		3D89F92B1841DBE900AD5243 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		3D89F92D1841DC1400AD5243 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = ../../../../../../usr/local/lib/libglfw3.a; sourceTree = "<group>"; };
+		3D89F9321841E83800AD5243 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		3D89F9341841E83D00AD5243 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		3D89F9361841EC9800AD5243 /* renderSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderSystem.cpp; sourceTree = "<group>"; };
+		3D89F9371841EC9800AD5243 /* renderSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = renderSystem.h; sourceTree = "<group>"; };
+		3D89F9391841F2BA00AD5243 /* projectManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = projectManager.cpp; sourceTree = "<group>"; };
+		3D89F93A1841F2BA00AD5243 /* projectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = projectManager.h; sourceTree = "<group>"; };
+		3D89F93C184268D800AD5243 /* vertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vertexBuffer.cpp; sourceTree = "<group>"; };
+		3D89F93D184268D800AD5243 /* vertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vertexBuffer.h; sourceTree = "<group>"; };
+		3D89F93F18426B3C00AD5243 /* shaderLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shaderLoader.cpp; sourceTree = "<group>"; };
+		3D89F94018426B3C00AD5243 /* shaderLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shaderLoader.h; sourceTree = "<group>"; };
+		3D89F94218426F0800AD5243 /* ColorShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ColorShader.vsh; sourceTree = "<group>"; };
+		3D89F94418426F1200AD5243 /* ColorShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ColorShader.fsh; sourceTree = "<group>"; };
+		3D89F946184270DC00AD5243 /* shaderInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shaderInterface.cpp; sourceTree = "<group>"; };
+		3D89F947184270DC00AD5243 /* shaderInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shaderInterface.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +64,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D89F9351841E83D00AD5243 /* IOKit.framework in Frameworks */,
+				3D89F9331841E83800AD5243 /* AppKit.framework in Frameworks */,
+				3D89F92E1841DC1400AD5243 /* libglfw3.a in Frameworks */,
+				3D89F92C1841DBE900AD5243 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +77,10 @@
 		3D89F9161841DBB300AD5243 = {
 			isa = PBXGroup;
 			children = (
+				3D89F9341841E83D00AD5243 /* IOKit.framework */,
+				3D89F9321841E83800AD5243 /* AppKit.framework */,
+				3D89F92D1841DC1400AD5243 /* libglfw3.a */,
+				3D89F92B1841DBE900AD5243 /* OpenGL.framework */,
 				3D89F9211841DBB300AD5243 /* CPSC_486_Assign_1_initWithData_tut */,
 				3D89F9201841DBB300AD5243 /* Products */,
 			);
@@ -61,6 +98,18 @@
 			isa = PBXGroup;
 			children = (
 				3D89F9221841DBB300AD5243 /* main.cpp */,
+				3D89F93A1841F2BA00AD5243 /* projectManager.h */,
+				3D89F9391841F2BA00AD5243 /* projectManager.cpp */,
+				3D89F9371841EC9800AD5243 /* renderSystem.h */,
+				3D89F9361841EC9800AD5243 /* renderSystem.cpp */,
+				3D89F947184270DC00AD5243 /* shaderInterface.h */,
+				3D89F946184270DC00AD5243 /* shaderInterface.cpp */,
+				3D89F94018426B3C00AD5243 /* shaderLoader.h */,
+				3D89F93F18426B3C00AD5243 /* shaderLoader.cpp */,
+				3D89F93D184268D800AD5243 /* vertexBuffer.h */,
+				3D89F93C184268D800AD5243 /* vertexBuffer.cpp */,
+				3D89F94218426F0800AD5243 /* ColorShader.vsh */,
+				3D89F94418426F1200AD5243 /* ColorShader.fsh */,
 				3D89F9241841DBB300AD5243 /* CPSC_486_Assign_1_initWithData_tut.1 */,
 			);
 			path = CPSC_486_Assign_1_initWithData_tut;
@@ -117,7 +166,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D89F93B1841F2BA00AD5243 /* projectManager.cpp in Sources */,
+				3D89F93E184268D800AD5243 /* vertexBuffer.cpp in Sources */,
 				3D89F9231841DBB300AD5243 /* main.cpp in Sources */,
+				3D89F948184270DC00AD5243 /* shaderInterface.cpp in Sources */,
+				3D89F9381841EC9800AD5243 /* renderSystem.cpp in Sources */,
+				3D89F94118426B3C00AD5243 /* shaderLoader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +249,12 @@
 		3D89F9291841DBB300AD5243 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"addGLFW/include/**",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
+				LIBRARY_SEARCH_PATHS = addGLFW/lib/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -202,6 +262,12 @@
 		3D89F92A1841DBB300AD5243 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"addGLFW/include/**",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
+				LIBRARY_SEARCH_PATHS = addGLFW/lib/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -7,12 +7,16 @@
 //
 
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <GLFW/glfw3.h>
+#include "projectManager.h"
 
 int main(int argc, const char * argv[])
 {
-
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    projectManager* myManager = &projectManager::getProjectManager();
+    myManager -> runLoop();
+    projectManager::destroyProjectManager();
     return 0;
 }
 
