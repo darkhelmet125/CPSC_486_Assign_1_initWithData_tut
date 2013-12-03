@@ -1,6 +1,7 @@
-attribute vec3 positionVertex;
+
+attribute vec3 aPositionVertex;
 
 void main()
 {
-    gl_Position = gl_ModelViewProjectMatrix*vec4(positionVertex, 1.0);
+    gl_Position = gl_ModelViewProjectionMatrix * vec4(aPositionVertex, 1.0);
 }

@@ -1,34 +1,47 @@
 //
-//  renderSystem.h
+//  RenderSystem.h
 //  CPSC_486_Assign_1_initWithData_tut
 //
-//  Created by William Short on 11/24/13.
+//  Created by William Short 11/24/13.
 //  Copyright (c) 2013 William Short. All rights reserved.
 //
 
-#ifndef __CPSC_486_Assign_1_initWithData_tut__renderSystem__
-#define __CPSC_486_Assign_1_initWithData_tut__renderSystem__
+#ifndef CPSC_486_Assign_1_initWithData_tut_RenderSystem_
+#define CPSC_486_Assign_1_initWithData_tut_RenderSystem_
 
 #include <iostream>
+//#define __gl_h_
 #define GLFW_INCLUDE_GLU
 #include <GLFW/glfw3.h>
+//#include <GLKit/GLKit.h>
 #include <vector>
-#include "vertexBuffer.h"
-#include "shaderInterface.h"
+#include "CameraSystem.h"
+#include "Entity.h"
+#include "VertexBuffer.h"
+#include "ShaderInterface.h"
 
-class renderSystem
+class RenderSystem
 {
 private:
+    
     GLFWwindow *_window;
-    std::vector<shaderInterface*> *shaderArray;
-    renderSystem();
-    ~renderSystem();
+    
+    CameraSystem *_cameraSystem;
+    Entity *_currentCamera;
+    
+    RenderSystem();
+    ~RenderSystem();
     
 public:
-    void render(vertexBuffer* myBuffer);
-    static renderSystem& getRenderSystem();
+    
+    Entity *getCurrentCamera();
+    void setCurrentCamera(Entity *newCamera);
+    
+    void render(std::vector<Entity *> *entityArray);
+    
+    static RenderSystem& getRenderSystem();
     static void destroyRenderSystem();
     
 };
 
-#endif /* defined(__CPSC_486_Assign_1_initWithData_tut__renderSystem__) */
+#endif

@@ -1,34 +1,44 @@
 //
-//  shaderInterface.h
+//  ShaderInterface.h
 //  CPSC_486_Assign_1_initWithData_tut
 //
-//  Created by William Short on 11/24/13.
+//  Created by William Short 11/24/13.
 //  Copyright (c) 2013 William Short. All rights reserved.
 //
 
-#ifndef __CPSC_486_Assign_1_initWithData_tut__shaderInterface__
-#define __CPSC_486_Assign_1_initWithData_tut__shaderInterface__
+#ifndef CPSC_486_Assign_1_initWithData_tut_ShaderInterface_
+#define CPSC_486_Assign_1_initWithData_tut_ShaderInterface_
 
 #include <iostream>
-#include "shaderLoader.h"
+#include "ShaderLoader.h"
 
-class shaderInterface
+class ShaderInterface
 {
 private:
-    shaderLoader *shader;
-    GLint _positionVertex;
+    
+    ShaderLoader *shader;
+    
+    GLint _aPositionVertex;
+    GLint _aPositionNormal;
     GLint _uColor;
-    char* _vertexShaderString;
-    char* _fragmentShaderString;
-    char* loadTextFromFile(const char* file);
+    GLint _uLightPosition;
+    
+    char *_vertexShaderString;
+    char *_fragmentShaderString;
+    
+    char *loadTextFromFile(const char *file);
     
 public:
-    GLuint getProgramHandle();
-    GLint get_positionVertex();
-    GLint get_uColor();
     
-    shaderInterface(const char* vs, const char* fs);
-    ~shaderInterface();
+    GLuint getProgramHandle();
+    GLint get_aPositionVertex();
+    GLint get_aPositionNormal();
+    GLint get_uColor();
+    GLint get_uLightPosition();
+    
+    ShaderInterface(const char *VS, const char *FS);
+    ~ShaderInterface();
+
 };
 
-#endif /* defined(__CPSC_486_Assign_1_initWithData_tut__shaderInterface__) */
+#endif

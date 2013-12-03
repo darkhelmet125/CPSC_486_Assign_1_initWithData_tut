@@ -1,71 +1,110 @@
 //
-//  projectManager.cpp
+//  ProjectManager.cpp
 //  CPSC_486_Assign_1_initWithData_tut
 //
-//  Created by William Short on 11/23/13.
+//  Created by William Short 11/23/13.
 //  Copyright (c) 2013 William Short. All rights reserved.
 //
 
-#include "projectManager.h"
+#include "ProjectManager.h"
+#define Updates_Per_Second 60.0f
 
-GLfloat vertices[] =
-{   -0.5f, -0.5f, 0.0f,
-     0.5f, -0.5f, 0.0f,
-     0.0f,  0.5f, 0.0f};
-
-//private
-projectManager::projectManager(bool running): _running(running), _window(glfwGetCurrentContext()), _mySystem(&renderSystem::getRenderSystem())
+ProjectManager::ProjectManager(bool running):
+_running(running), _window(glfwGetCurrentContext()),
+_renderSystem(&RenderSystem::getRenderSystem()),
+_resourceManager(&ResourceManager::getResourceManager()),
+_movementSystem(&MovementSystem::getMovementSystem()),
+_cameraSystem(&CameraSystem::getCameraSystem()), scene(new Scene), _playerInputSystem(&PlayerInputSystem::getPlayerInputSystem())
 {
-    _vertexBuffer = new vertexBuffer(vertices, sizeof(vertices), GL_TRIANGLES, 3, sizeof(GLfloat)*3);
 }
 
-projectManager::~projectManager()
+ProjectManager::~ProjectManager()
 {
-    renderSystem::destroyRenderSystem();
+    ResourceManager::destroyResourceManager();
+    CameraSystem::destroyCameraSystem();
+    RenderSystem::destroyRenderSystem();
+    PlayerInputSystem::destroyPlayerInputSystem();
 }
 
-//public
-void projectManager::runLoop()
+void ProjectManager::runGameLoop()
 {
+    double lastTime = glfwGetTime();
+    double deltaTime = 0.0f;
+    
     while (_running)
     {
-        _running = !glfwWindowShouldClose(_window);
         
-        _mySystem->render(_vertexBuffer);
-        if(glfwGetKey(_window, GLFW_KEY_ESCAPE))
+        double currentTime = glfwGetTime();
+        deltaTime += (currentTime - lastTime) * Updates_Per_Second;
+        lastTime = currentTime;
+        
+        while (deltaTime >= 1.0f)
+        {
+            
+            _running = !glfwWindowShouldClose(_window);
+            
+            if(glfwGetKey(_window, GLFW_KEY_UP))
+            {
+                _cameraSystem->getCurrentCamera()->setPosition(makeVector3(_cameraSystem->getCurrentCamera()->getPosition().x, _cameraSystem->getCurrentCamera()->getPosition().y, (_cameraSystem->getCurrentCamera()->getPosition().z - 0.15)));
+                
+                std::cout<<"camera position: "<<_cameraSystem->getCurrentCamera()->getPosition().x<<", "<<_cameraSystem->getCurrentCamera()->getPosition().y<<", "<<_cameraSystem->getCurrentCamera()->getPosition().z<<std::endl;
+            }
+            
+            if(glfwGetKey(_window, GLFW_KEY_DOWN))
+            {
+                _cameraSystem->getCurrentCamera()->setPosition(makeVector3(_cameraSystem->getCurrentCamera()->getPosition().x, _cameraSystem->getCurrentCamera()->getPosition().y, (_cameraSystem->getCurrentCamera()->getPosition().z + 0.15)));
+                
+                std::cout<<"camera position: "<<_cameraSystem->getCurrentCamera()->getPosition().x<<", "<<_cameraSystem->getCurrentCamera()->getPosition().y<<", "<<_cameraSystem->getCurrentCamera()->getPosition().z<<std::endl;
+            }
+            
+            _movementSystem->update(scene->getChildren());
+            
+            --deltaTime;
+        }
+        
+        _renderSystem->render(scene->getChildren());
+        
+        if(glfwGetKey(_window, GLFW_KEY_ESCAPE) || glfwGetKey(_window, GLFW_KEY_Q))
             _running = false;
     }
 }
 
-projectManager& projectManager::getProjectManager()
+ProjectManager& ProjectManager::getProjectManager()
 {
-    static projectManager* myManager = NULL;
+    static ProjectManager *projectManager = NULL;
     
-    if(myManager == NULL)
-    {
+    if (projectManager == NULL) {
+        
         glfwInit();
+        
         glfwWindowHint(GLFW_DEPTH_BITS, 24);
         glfwWindowHint(GLFW_RED_BITS, 8);
         glfwWindowHint(GLFW_GREEN_BITS, 8);
         glfwWindowHint(GLFW_BLUE_BITS, 8);
-        GLFWwindow *window = glfwCreateWindow(800, 600, "Assign 1", NULL, NULL);
+        glfwWindowHint(GLFW_ALPHA_BITS, 8);
+        glfwWindowHint(GLFW_SAMPLES, 16);
+        glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+        GLFWwindow *window = glfwCreateWindow(1280, 720, "CPSC 486 Assign 1", NULL, NULL);
         glfwMakeContextCurrent(window);
         
-        myManager = new projectManager(true);
+        projectManager = new ProjectManager(true);
         
-        std::cout<<"manager created"<<std::endl;
+        std::cout << "ProjectManager created" << std::endl;
     }
     
-    return *myManager;
+    return *projectManager;
 }
 
-void projectManager::destroyProjectManager()
+void ProjectManager::destroyProjectManager()
 {
-    projectManager *myManager = &getProjectManager();
-    delete myManager;
+    ProjectManager *projectManager = &getProjectManager();
+    delete projectManager;
     
-    std::cout<<"manager destroyed"<<std::endl;
-    GLFWwindow* window = glfwGetCurrentContext();
+    std::cout << "ProjectManager destroyed" << std::endl;
+    
+    GLFWwindow *window = glfwGetCurrentContext();
     glfwDestroyWindow(window);
+    
     glfwTerminate();
+    
 }

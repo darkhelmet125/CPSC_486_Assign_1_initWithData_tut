@@ -1,27 +1,32 @@
 //
-//  shaderLoader.h
+//  ShaderLoader.h
 //  CPSC_486_Assign_1_initWithData_tut
 //
-//  Created by William Short on 11/24/13.
+//  Created by William Short 11/24/13.
 //  Copyright (c) 2013 William Short. All rights reserved.
 //
 
-#ifndef __CPSC_486_Assign_1_initWithData_tut__shaderLoader__
-#define __CPSC_486_Assign_1_initWithData_tut__shaderLoader__
+#ifndef CPSC_486_Assign_1_initWithData_tut_ShaderLoader_
+#define CPSC_486_Assign_1_initWithData_tut_ShaderLoader_
 
 #include <iostream>
 #include <GLFW/glfw3.h>
 
-class shaderLoader
+class ShaderLoader
 {
 private:
+    
     GLuint _programHandle;
-    GLuint compileShader(GLenum target, const char* source);
+    
+    GLuint compileShader(GLenum shader, const  char *source);
     
 public:
+    
     GLuint getProgramHandle();
-    shaderLoader(const char* sourceVS, const char* sourceFS);
-    ~shaderLoader();
+    
+    ShaderLoader(const char *sourceVS, const char *sourceFS);
+    ~ShaderLoader();
+
 };
 
-#endif /* defined(__CPSC_486_Assign_1_initWithData_tut__shaderLoader__) */
+#endif

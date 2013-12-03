@@ -1,44 +1,65 @@
 //
-//  vertexBuffer.cpp
+//  VertexBuffer.cpp
 //  CPSC_486_Assign_1_initWithData_tut
 //
-//  Created by William Short on 11/24/13.
+//  Created by William Short 11/23/13.
 //  Copyright (c) 2013 William Short. All rights reserved.
 //
 
-#include "vertexBuffer.h"
+#include "VertexBuffer.h"
 
-//public
-
-//public
-GLuint vertexBuffer::getVertexBuffer()
+GLuint VertexBuffer::getVertexBufferID()
 {
     return _vertexBufferID;
 }
 
-void vertexBuffer::configureVertexAttributes(GLint vertexPosition)
+ShaderInterface *VertexBuffer::getShader()
 {
-    if(vertexPosition != -1)
-    {
-        glEnableVertexAttribArray(vertexPosition);
-        glVertexAttribPointer(vertexPosition, 3, GL_FLOAT, GL_FALSE, _stride, NULL);
-    }
+    return _shader;
 }
 
-void vertexBuffer::renderVertexBuffer()
+ShaderData *VertexBuffer::getShaderData()
 {
-    glDrawArrays(_mode, 0, _count);
+    return _shaderData;
 }
 
-vertexBuffer::vertexBuffer(const GLvoid* data, GLsizeiptr size, GLenum mode, GLsizei count, GLsizei stride): _mode(mode), _count(count), _stride(stride)
+VertexBuffer::VertexBuffer(const GLvoid *data,
+                           GLsizeiptr size,
+                           GLenum mode,
+                           GLsizei count,
+                           GLsizei stride,
+                           ShaderInterface *shader,
+                           ShaderData *shaderData,
+                           GLvoid *positionOffset,
+                           GLvoid *normalOffset):
+_mode(mode), _count(count), _stride(stride), _shader(shader), _positionOffset(positionOffset), _normalOffset(normalOffset),
+_shaderData(shaderData)
 {
     glGenBuffers(1, &_vertexBufferID);
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBufferID);
     glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
 }
 
-vertexBuffer::~vertexBuffer()
+VertexBuffer::~VertexBuffer()
 {
     glDeleteBuffers(1, &_vertexBufferID);
     _vertexBufferID = 0;
+}
+
+void VertexBuffer::configureVertexAttributes()
+{
+    if (_shader->get_aPositionVertex() != -1) {
+        glEnableVertexAttribArray(_shader->get_aPositionVertex());
+        glVertexAttribPointer(_shader->get_aPositionVertex(), 3, GL_FLOAT, GL_FALSE, _stride, _positionOffset);
+    }
+    
+    if (_shader->get_aPositionNormal() != -1) {
+        glEnableVertexAttribArray(_shader->get_aPositionNormal());
+        glVertexAttribPointer(_shader->get_aPositionNormal(), 3, GL_FLOAT, GL_FALSE, _stride, _normalOffset);
+    }
+}
+
+void VertexBuffer::renderVertexBuffer()
+{
+    glDrawArrays(_mode, 0, _count);
 }
